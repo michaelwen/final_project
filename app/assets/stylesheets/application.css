@@ -15,4 +15,7 @@
  *= require groups
  *= require sessions
  *= require users
+ *=requre_tree .
+ *=require_self
  */
+

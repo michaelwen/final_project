@@ -14,6 +14,12 @@
   <%= render 'follow_form' if logged_in? %>
 </p>
 
+<% if @user == current_user %>
+  <%= link_to 'New Song', new_song_path %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Back', users_path %>
+<% end %>
+
 <p>
   <section class="stats">
     <%= render 'stats' %>
@@ -25,18 +31,12 @@
       <ol>
         <% @user.songs.each do |song| %>
           <h3><%=song.song_name%></h3>
+          <h4><%=song.created_at.strftime('%D')%></h4>
           <iframe src="https://embed.spotify.com/?uri=<%=song.spotify_uri%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe></br>
           <% if @user == current_user %>
-          <td><%= link_to 'Edit', edit_song_path(song) %></td>
-          <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
       </ol>
     </div>
   <% end %>
 </p>
-
-<% if @user == current_user %>
-  <%= link_to 'New Song', new_song_path %>
-  <%= link_to 'Edit', edit_user_path(@user) %> |
-  <%= link_to 'Back', users_path %>
-<% end %>
