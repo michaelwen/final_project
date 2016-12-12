@@ -22,5 +22,6 @@ module FinalProject
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    RSpotify::authenticate("d9ad5a779ea445379831932ed05aef00", "f5877b0d22214d74908d3780e8b9bfbb")
   end
 end

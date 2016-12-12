@@ -1,10 +1,34 @@
 Rails.application.routes.draw do
-  resources :users
+
+  root 'welcome#index'
+
+  get 'sessions/new' 
+
+  get 'sessions/create'
+
+  get 'sessions/edit'
+
+  get 'sessions/destroy'
+
+  get '/login' => 'sessions#new'
+
+  get '/auth/spotify/callback', to: 'users#spotify'
+
+  post '/sessions/new' => 'sessions#create'
+
+  delete '/logout' => 'sessions#destroy'
+
+  resources :songs
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships,       only: [:create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

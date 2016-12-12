@@ -2,12 +2,14 @@
 
 one:
   name: MyString
-  followers_id: 
-  playlists_id: 
-  following_id: 
+  email: MyString
+  password_hash: MyString
+  groups_id: 
+  statuses_id: 
 
 two:
   name: MyString
-  followers_id: 
-  playlists_id: 
-  following_id: 
+  email: MyString
+  password_hash: MyString
+  groups_id: 
+  statuses_id: 
