@@ -1,12 +1,20 @@
-<h1 class="welcome-banner">SONGEROODLE</h1>
+<h1 class="welcome-banner">SONGERDOODLE</h1>
 <!-- TODO: Greet the current user! -->
 <% if logged_in? %>
   <h1> <%= link_to current_user.name, current_user %> </h1>
+
+	<h2 class="feed"> Feed </h2>
+	<% current_user.feed.order('created_at DESC').each do |song| %>
+	  <h3 class="feed"><%=song.song_name%></h3>
+	  <h4 class="feed"><%=song.created_at.strftime('%D')%></h4>
+	  <iframe class ="feed" src="https://embed.spotify.com/?uri=<%=song.spotify_uri%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe></br>
+	<% end %>
+<% else %>
+  <h2 class="feed"> Feed </h2>
+  <% Song.all.order('created_at DESC').each do |song| %>
+    <h3 class="feed"><%=song.song_name%></h3>
+	  <h4 class="feed"><%=song.created_at.strftime('%D')%></h4>
+	  <iframe src="https://embed.spotify.com/?uri=<%=song.spotify_uri%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe></br>
+	<% end %>
 <% end %>
 
-<h2> Feed </h2>
-<% current_user.feed.each do |song| %>
-  <h3><%=song.song_name%></h3>
-  <h4><%=song.created_at.strftime('%D')%></h4>
-  <iframe src="https://embed.spotify.com/?uri=<%=song.spotify_uri%>" width="300" height="380" frameborder="0" allowtransparency="true"></iframe></br>
-<% end %>
